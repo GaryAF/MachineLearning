@@ -25,5 +25,16 @@ onehotencoder = ColumnTransformer([('my_ohe', OneHotEncoder(), [3])], remainder=
 X = onehotencoder.fit_transform(X)
 Xa= X[:,1:]
 
+ ## SPlit data set
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
+# Model Linear
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+
+# Predict
+y_pred = regressor.predict(X_test)
+regressor.predict(np.array([[1, 0, 130000, 140000, 300000]]))
 
