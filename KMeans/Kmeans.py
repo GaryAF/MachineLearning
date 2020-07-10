@@ -29,16 +29,7 @@ plt.show()
 
 # Model
 kmeans = KMeans(n_clusters = 5, random_state = 0 , init='k-means++')
-y_kmeans = kmeans.fit_predict(X)
-
-
-plt.scatter(X[y_kmeans == 1 , 0], X[y_kmeans == 1 , 1], c = 'red', label = 'Cluster 1')
-plt.scatter(X[y_kmeans == 2 , 0], X[y_kmeans == 2 , 1], c = 'blue', label = 'Cluster 2')
-plt.scatter(X[y_kmeans == 3 , 0], X[y_kmeans == 3 , 1], c = 'green', label = 'Cluster 3')
-plt.scatter(X[y_kmeans == 4 , 0], X[y_kmeans == 4 , 1], c = 'magenta', label = 'Cluster 4')
-plt.scatter(X[y_kmeans == 0 , 0], X[y_kmeans == 0 , 1], c = 'cyan', label = 'Cluster 5')
-plt.title("Clients Cluster")
-plt.xlabel("Annual Salary")
-plt.ylabel("Spending Score")
-plt.legend()
-
+plt.scatter(X[:,0], X[:,1], c=kmeans.predict(X))
+plt.scatter(kmeans.cluster_centers_[:,0], kmeans.cluster_centers_[:,1], c='r')
+print(kmeans.score(X))
+plt.show()
